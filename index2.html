@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #drag{
+            width: 100px;
+            height: 100px;
+            background: blue;
+            position: absolute;
+            top:-9999px;
+        }
+    </style>
+</head>
+<body>
+    <div id="drag"></div>
+    <script>
+        const bc =new BroadcastChannel("pipeAAA");
+        const dragEvent = document.getElementById("drag");
+        bc.onmessage=(e)=>{
+            dragEvent.style.top=`${e.data.top}px`;
+            dragEvent.style.left=`${-window.innerWidth+e.data.left}px`;
+            console.log(e.data)
+            
+        }
+    </script>
+</body>
+</html>
